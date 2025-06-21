@@ -1,8 +1,8 @@
 :root {
-  --status-pendente: #ffc107; /* Amarelo */
-  --status-confirmada: #198754; /* Verde */
-  --status-cancelada: #dc3545; /* Vermelho */
-  --status-concluida: #6c757d; /* Cinza */
+  --status-pendente: #ffc107; 
+  --status-confirmada: #198754; 
+  --status-cancelada: #dc3545; 
+  --status-concluida: #6c757d; 
   --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.08);
   --transition: all 0.2s ease-in-out;
 }
@@ -30,7 +30,6 @@
   font-size: 1.1rem;
 }
 
-/* NOVO: Estilo para reservas antigas */
 .reserva-antiga {
     opacity: 0.65;
 }

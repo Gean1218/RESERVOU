@@ -3,12 +3,12 @@ const path = require('path')
 const server = jsonServer.create()
 const router = jsonServer.router(path.join(__dirname, 'db', 'db.json'))
 const middlewares = jsonServer.defaults({
-  static: path.join(__dirname, 'public') // <-- isso serve seus HTMLs
+  static: path.join(__dirname, 'public')
 })
 
 server.use(middlewares)
 
-// Resposta customizada para a raiz /
+
 server.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'home.html'))
 })

@@ -1,7 +1,7 @@
 :root {
   --primary-red: #8B0000;
   --accent-gold: #D4AF37;
-  --neutral-bg: #FFFDD0; /* Creme */
+  --neutral-bg: #FFFDD0; 
   --neutral-900: #1A1A1A;
 }
 
@@ -72,12 +72,11 @@ body {
     text-decoration: underline;
 }
 
-/* --- Estilos para as mensagens de feedback --- */
 .message {
     font-size: 0.9rem;
     border-radius: 5px;
     padding: 10px;
-    display: none; /* Começa escondido */
+    display: none;
     margin-top: 1rem;
     text-align: center;
 }
@@ -94,7 +93,6 @@ body {
     border: 1px solid #f5c2c7;
 }
 
-/* --- ESTILOS PARA O TOGGLE SWITCH --- */
 .switch-container {
     display: flex;
     align-items: center;
@@ -108,7 +106,6 @@ body {
     transition: all 0.3s ease;
 }
 
-/* Destaca o texto da opção não selecionada */
 .switch-container .switch-label:not(.active) {
     opacity: 0.6;
 }
@@ -120,7 +117,6 @@ body {
     height: 34px;
 }
 
-/* Esconde o checkbox padrão */
 .switch input {
     opacity: 0;
     width: 0;
@@ -151,7 +147,6 @@ body {
     transition: .4s;
 }
 
-/* Estilos quando o switch está LIGADO (checked) */
 input:checked + .slider {
     background-color: var(--primary-red);
 }
@@ -166,7 +161,6 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
-/* Formato arredondado */
 .slider.round {
     border-radius: 34px;
 }

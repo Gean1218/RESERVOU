@@ -56,7 +56,6 @@ body {
     width: 100%;
 }
 
-/* Adicionado para o overlay de login */
 #feedbackForm {
     position: relative;
 }
@@ -177,14 +176,13 @@ body {
     border-top: 1px solid #dee2e6;
 }
 
-/* --- NOVOS ESTILOS PARA O BLOQUEIO DE LOGIN --- */
 .login-required-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 253, 208, 0.9); /* Creme semi-transparente */
+    background-color: rgba(255, 253, 208, 0.9); 
     display: flex;
     justify-content: center;
     align-items: center;

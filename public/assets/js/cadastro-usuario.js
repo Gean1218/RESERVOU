@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
   
-        // 1. Verifica se o email já está em uso fazendo uma chamada à API
         try {
           const checkEmailResponse = await fetch(`/usuarios?email=${email}`);
           const existingUsers = await checkEmailResponse.json();
@@ -31,15 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
               return;
           }
   
-          // 2. Cria o novo usuário com o campo "nome"
           const novoUsuario = {
               nome: nome,
               email: email,
               password: password,
-              restaurantesFavoritos: [] // Inicializa favoritos como um array vazio
+              restaurantesFavoritos: [] 
           };
   
-          // 3. Envia o novo usuário para o servidor via POST
           const createUserResponse = await fetch('/usuarios', {
               method: 'POST',
               headers: {

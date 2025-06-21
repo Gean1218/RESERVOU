@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- VERIFICAÇÃO DE SEGURANÇA ---
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     let restauranteId = null;
 
@@ -8,11 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     } else {
         restauranteId = usuarioLogado.id;
-        // Chama a nova função para configurar todos os links
         configurarLinksLaterais(restauranteId);
     }
 
-    // --- ELEMENTOS DO DOM E MODAIS ---
     const listaReservasFuturas = document.getElementById('listaReservasFuturas');
     const listaReservasAntigas = document.getElementById('listaReservasAntigas');
     const loadingSpinner = document.querySelector('.loading-spinner');
@@ -27,15 +24,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const confirmModalBody = document.getElementById('confirmModalBody');
     const confirmOkBtn = document.getElementById('confirmOkBtn');
 
-    // --- FUNÇÃO PARA CONFIGURAR LINKS (PADRONIZADA) ---
     function configurarLinksLaterais(id) {
         document.getElementById('profileLink').href = `pagina-admin.html?id=${id}`;
-        document.getElementById('reservasLink').href = `reservas.html?id=${id}`; // Aponta para si mesmo
+        document.getElementById('reservasLink').href = `reservas.html?id=${id}`;
         document.getElementById('editMenuLink').href = `editor-cardapio.html?id=${id}`;
         document.getElementById('viewFeedbacksLink').href = `ver-fb.html?id=${id}`;
     }
 
-    // --- LÓGICA DE DADOS ---
     async function carregarReservas() {
         if(loadingSpinner) loadingSpinner.style.display = 'block';
         listaReservasFuturas.innerHTML = '';

@@ -1,14 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- VERIFICAÇÃO DE LOGIN ---
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
 
-    // Se não houver usuário logado, bloqueia a página
     if (!usuarioLogado) {
         bloquearFormularioParaAnonimos();
-        return; // Para a execução do script aqui
+        return; 
     }
 
-    // --- ELEMENTOS DO DOM ---
     const restauranteSelect = document.getElementById('restauranteSelect');
     const feedbackForm = document.getElementById('feedbackForm');
     const messageDiv = document.getElementById('message');
@@ -23,9 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isRestaurante = usuarioLogado && usuarioLogado.type === 'restaurante';
 
-    /**
-     * Busca restaurantes na API e preenche o select
-     */
     async function carregarRestaurantes() {
         try {
             const response = await fetch('/restaurantes');
@@ -45,9 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    /**
-     * Envia o feedback para o servidor
-     */
     async function enviarFeedback(feedbackData) {
         messageDiv.style.display = 'none';
         try {
@@ -68,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- FUNÇÕES DE CONTROLE ---
     function abrirModal() {
         reservouModal.style.display = 'block';
     }
@@ -79,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function bloquearFormularioParaAnonimos() {
-        // Desabilita os campos e o link do modal
         document.getElementById('restauranteSelect').disabled = true;
         document.getElementById('feedbackMessage').disabled = true;
         document.querySelector('#feedbackForm button').disabled = true;
@@ -89,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
             platformLink.style.opacity = '0.5';
         }
 
-        // Cria e injeta o overlay com a mensagem
         const overlay = document.createElement('div');
         overlay.className = 'login-required-overlay';
         overlay.innerHTML = `
@@ -101,8 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('feedbackForm').appendChild(overlay);
     }
 
-
-    // --- LÓGICA DE CONTROLE DE ACESSO PARA RESTAURANTES ---
     if (isRestaurante) {
         restauranteWarning.textContent = 'Restaurantes não podem enviar feedback para outros estabelecimentos. Para nos dar sua opinião sobre a plataforma, utilize o link abaixo.';
         restauranteWarning.style.display = 'block';
@@ -129,7 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- EVENT LISTENERS GERAIS (MODAL) ---
     feedbackReservouLink.addEventListener('click', (event) => {
         event.preventDefault();
         abrirModal();

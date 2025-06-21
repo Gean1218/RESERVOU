@@ -1,7 +1,6 @@
-/* --- ESTILO BASE E VARIÁVEIS --- */
 :root {
   --vinho: #8B0000;
-  --creme: #FFFDD0; /* Um tom de creme um pouco mais suave */
+  --creme: #FFFDD0; 
   --dourado: #D4AF37;
   --texto-escuro: #3d3d3d;
 }
@@ -20,9 +19,8 @@ body {
     min-height: 100vh; 
 }
 
-/* --- BARRA DE NAVEGAÇÃO --- */
 .navbar { 
-    background: linear-gradient(to right, #7a0000, var(--vinho)); /* Gradiente sutil */
+    background: linear-gradient(to right, #7a0000, var(--vinho)); 
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 .navbar-brand { 
@@ -32,7 +30,6 @@ body {
 }
 .navbar-brand:hover { color: #eee; }
 
-/* Botões customizados no cabeçalho */
 .btn-nav {
   color: white;
   background-color: transparent;
@@ -66,7 +63,6 @@ body {
 .barra-busca .input-group-text { background-color: transparent; border: none; color: #999; }
 .btn-hamburger { background: none; border: none; color: #fff; font-size: 1.5rem; }
 
-/* --- CONTEÚDO PRINCIPAL --- */
 .titulo-secao { 
     font-weight: bold; 
     text-align: center; 
@@ -76,20 +72,19 @@ body {
     letter-spacing: 1px;
 }
 
-/* --- CARROSSEL --- */
 #carrosselTopo { 
     max-width: 1100px; 
     height: 400px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 #carrosselTopo .carousel-item {
-    background: #333; /* Fundo escuro para o caso de a imagem demorar a carregar */
+    background: #333;
 }
 #carrosselTopo .carousel-item img { 
     object-fit: cover; 
     height: 100%; 
     width: 100%; 
-    opacity: 0.9; /* Levemente escurecida para o texto sobressair */
+    opacity: 0.9; 
 }
 #carrosselTopo .carousel-caption {
     background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
@@ -107,7 +102,6 @@ body {
     width: 60px;
 }
 
-/* --- ESTILOS DO CARTÃO DE RESTAURANTE --- */
 .card-link { text-decoration: none; color: inherit; }
 .card-restaurante { 
     border-radius: 12px; 
@@ -120,7 +114,7 @@ body {
 .card-restaurante:hover { 
     transform: translateY(-8px); 
     box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-    border-color: var(--dourado); /* Borda dourada no hover */
+    border-color: var(--dourado); 
 }
 .card-restaurante .card-img-top { 
     aspect-ratio: 4 / 3; 
@@ -141,7 +135,6 @@ body {
     font-size: 0.9rem;
 }
 
-/* --- BOTÃO DE FAVORITO --- */
 .btn-favorito { 
     position: absolute; 
     top: 15px; 
@@ -162,10 +155,9 @@ body {
     transform: scale(1.1);
 }
 .btn-favorito.favorited {
-    color: var(--dourado); /* Cor quando favoritado */
+    color: var(--dourado); 
 }
 
-/* --- MENU LATERAL (OFFCANVAS) --- */
 .offcanvas { background-color: var(--vinho); color: #fff; }
 .offcanvas-header { border-bottom: 1px solid rgba(255,255,255,0.2); }
 .offcanvas-body .nav-link { color: #fff; padding: 10px 15px; }
@@ -181,11 +173,9 @@ body {
   background-color: #f1efd6;
 }
 
-/* --- RODAPÉ --- */
 .footer-custom { 
-    background-color: #343a40; /* Um cinza escuro mais sofisticado */
+    background-color: #343a40;
 }
 
-/* --- MEDIA QUERIES --- */
 @media (max-width: 768px) { #carrosselTopo { height: 280px; } }
 @media (max-width: 576px) { .titulo-secao { font-size: 1.75rem; } .barra-busca { max-width: 180px; } #carrosselTopo { height: 220px; margin-bottom: 2rem !important; } }

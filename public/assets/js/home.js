@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // --- ELEMENTOS DO DOM ---
   const gridRestaurantes = document.getElementById('gridRestaurantes');
   const campoFiltro = document.getElementById('campoFiltro');
   const tituloSecao = document.getElementById('titulo-secao');
@@ -16,16 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnLogout = document.getElementById('btn-logout');
   const nomeUsuarioLogadoDisplay = document.getElementById('nome-usuario-logado');
 
-  // --- URLs DA API ---
   const API_RESTAURANTES_URL = '/restaurantes';
   const API_USUARIOS_URL = '/usuarios';
 
-  // --- ESTADO DA APLICAÇÃO ---
   let todosRestaurantes = [];
   let usuarioLogado = null;
   let restauranteLogado = null; 
 
-  // --- FUNÇÕES DE RENDERIZAÇÃO DA INTERFACE ---
   const renderizarInterface = () => {
     if (restauranteLogado && restauranteLogado.type === 'restaurante') {
       navDefault.classList.add('d-none');
@@ -55,12 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
     loginToast.show();
   };
 
-  // --- LÓGICA DE FAVORITOS ---
   const obterFavoritosDoUsuario = () => {
     if (!usuarioLogado || !usuarioLogado.restaurantesFavoritos) {
         return [];
     }
-    // CORREÇÃO: Garante que todos os IDs na lista de favoritos sejam tratados como texto (string).
     return usuarioLogado.restaurantesFavoritos.map(id => String(id));
   };
 
@@ -71,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     
-    // CORREÇÃO: Garante que o ID do restaurante clicado também seja tratado como texto.
     const idRestauranteStr = String(idRestaurante);
     const favoritosAtuais = obterFavoritosDoUsuario();
 
@@ -95,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // --- FUNÇÕES DE EXIBIÇÃO DE CONTEÚDO ---
   const exibirCarrossel = (restaurantes) => {
     const conteudo = document.getElementById('conteudoCarrossel');
     const indicadores = document.getElementById('indicadoresCarrossel');
@@ -116,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
     gridRestaurantes.innerHTML = '';
     const favoritos = obterFavoritosDoUsuario();
     restaurantes.forEach(rest => {
-      // CORREÇÃO: Garante que a verificação 'isFav' compare texto com texto.
       const isFav = favoritos.includes(String(rest.id));
       const podeFavoritar = usuarioLogado && usuarioLogado.type === 'usuario';
 
@@ -143,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
     exibirCartoes(restaurantesFiltrados);
   };
 
-  // --- EVENT LISTENERS ---
   campoFiltro.addEventListener('input', atualizarExibicaoCards);
 
   btnLogout.addEventListener('click', () => {
@@ -158,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
   });
 
-  // --- INICIALIZAÇÃO ---
   const init = async () => {
     const contaLogada = JSON.parse(localStorage.getItem('usuarioLogado'));
 

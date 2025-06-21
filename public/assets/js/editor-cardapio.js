@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- VERIFICAÇÃO DE SEGURANÇA ---
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     const params = new URLSearchParams(window.location.search);
     const restauranteId = params.get('id');
@@ -14,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // --- ELEMENTOS DO DOM ---
     const restaurantNameSpan = document.getElementById('restaurantName');
     const menuEditorDiv = document.getElementById('menuEditor');
     const loadingDiv = document.getElementById('loading');
@@ -24,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const itemModal = new bootstrap.Modal(itemModalEl);
     const itemForm = document.getElementById('itemForm');
 
-    // Modais
     const alertModal = new bootstrap.Modal(document.getElementById('alertModal'));
     const alertModalBody = document.getElementById('alertModalBody');
     const confirmModalEl = document.getElementById('confirmModal');
@@ -39,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let restauranteData = null;
 
-    // --- LÓGICA PRINCIPAL ---
     async function inicializar() {
         configurarLinksLaterais();
         try {
@@ -64,7 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- FUNÇÕES DE RENDERIZAÇÃO ---
     function renderizarCardapioCompleto() {
         menuEditorDiv.innerHTML = '';
         const cardapio = restauranteData.cardapio || {};
@@ -112,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
     
-    // --- MANIPULAÇÃO DE EVENTOS ---
     addCategoryBtn.addEventListener('click', async () => {
         const nomeCategoria = await showCustomPrompt("Digite o nome da nova categoria (sem espaços, ex: PratosPrincipais):");
         if (nomeCategoria && nomeCategoria.trim()) {
@@ -188,7 +182,6 @@ document.addEventListener('DOMContentLoaded', () => {
         itemModal.show();
     }
     
-    // --- FUNÇÕES DE APOIO ---
     async function salvarErenderizar() {
         try {
             loadingDiv.style.display = 'flex';
@@ -286,6 +279,5 @@ document.addEventListener('DOMContentLoaded', () => {
         return comEspacos.charAt(0).toUpperCase() + comEspacos.slice(1);
     }
     
-    // Inicia a aplicação
     inicializar();
 });

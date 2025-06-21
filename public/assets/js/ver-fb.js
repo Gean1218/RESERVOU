@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- VERIFICAÇÃO DE SEGURANÇA ---
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     const params = new URLSearchParams(window.location.search);
     const restauranteId = params.get('id');
@@ -13,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // --- ELEMENTOS DO DOM E MODAIS ---
     const container = document.getElementById('feedback-container');
     const restaurantNameEl = document.getElementById('restaurantName');
     const loadingSpinner = document.getElementById('loadingSpinner');
@@ -24,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const confirmModalBody = document.getElementById('confirmModalBody');
     const confirmOkBtn = document.getElementById('confirmOkBtn');
 
-    // --- LÓGICA PRINCIPAL ---
     async function carregarFeedbacks() {
         loadingSpinner.style.display = 'block';
         container.innerHTML = '';
@@ -130,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- INICIALIZAÇÃO ---
     configurarLinksLaterais();
     carregarFeedbacks();
 });

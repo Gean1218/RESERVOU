@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 2000);
         } else {
             const usuarioLogado = {
-                id: account.id, // CORREÇÃO: Usando 'id' em vez de 'idUsuario'
+                id: account.id,
                 nome: account.nome,
                 email: account.email,
                 type: 'usuario'

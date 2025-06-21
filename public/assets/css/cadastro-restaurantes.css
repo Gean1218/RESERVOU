@@ -80,7 +80,7 @@ label {
     font-weight: 600;
 }
 
-.campo-entrada, .form-control { /* Aplicando estilo para ambos */
+.campo-entrada, .form-control { 
     width: 100%;
     padding: 0.5rem 0.75rem;
     border: 1px solid #ced4da;
@@ -91,16 +91,14 @@ label {
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.campo-entrada:focus, .form-control:focus { /* Aplicando estilo para ambos */
+.campo-entrada:focus, .form-control:focus { 
     border-color: var(--accent-gold);
     box-shadow: 0 0 0 0.25rem rgba(212, 175, 55, 0.25);
     background-color: white;
 }
 
-/* O CSS customizado para o botão de upload foi removido */
-/* Novo estilo para o container da pré-visualização */
 .preview-container #imagemPreview {
-    display: none; /* Começa escondida */
+    display: none; 
     max-height: 150px;
     border: 1px solid #ddd;
     padding: 5px;

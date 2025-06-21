@@ -1,31 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- ELEMENTOS DO DOM ---
+    
     const gridRestaurantes = document.getElementById('gridRestaurantes');
     const tituloSecao = document.getElementById('titulo-secao');
     
-    // Elementos do Menu Lateral (para exibir nome e logout)
     const menuDeslogado = document.getElementById('menu-deslogado');
     const menuLogado = document.getElementById('menu-logado');
     const btnLogout = document.getElementById('btn-logout');
     const nomeUsuarioLogadoDisplay = document.getElementById('nome-usuario-logado');
   
-    // Elementos do Cabeçalho (para o dropdown de restaurante)
     const navDefault = document.getElementById('nav-default');
     const navRestaurante = document.getElementById('nav-restaurante');
     const nomeRestauranteLogado = document.getElementById('nome-restaurante-logado');
   
-    // --- URLs DA API ---
     const API_RESTAURANTES_URL = '/restaurantes';
     const API_USUARIOS_URL = '/usuarios';
   
-    // --- ESTADO DA APLICAÇÃO ---
     let usuarioLogado = null;
     let restauranteLogado = null; 
   
-    // --- FUNÇÕES DE RENDERIZAÇÃO DA INTERFACE ---
-  
     const renderizarInterface = () => {
-      // Lógica para exibir o nome/menu correto no cabeçalho e menu lateral
       if (restauranteLogado && restauranteLogado.type === 'restaurante') {
         navDefault.classList.add('d-none');
         navRestaurante.classList.remove('d-none');
@@ -59,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
       }
   
-      // Na página de favoritos, todos os restaurantes exibidos já são favoritos.
       restaurantes.forEach(rest => {
         const cartaoHTML = `
           <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
@@ -78,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     };
   
-    // Permite desfavoritar um item diretamente da página de favoritos
     window.alternarFavorito = async (idRestaurante, event) => {
       event.stopPropagation();
       
@@ -86,7 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const novosFavoritos = favoritosAtuais.filter(id => id !== idRestaurante);
   
       try {
-        // CORREÇÃO: Usando 'usuarioLogado.id' para a chamada da API
         await fetch(`${API_USUARIOS_URL}/${usuarioLogado.id}`, {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
@@ -96,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
         usuarioLogado.restaurantesFavoritos = novosFavoritos;
         localStorage.setItem('usuarioLogado', JSON.stringify(usuarioLogado));
         
-        // Recarrega a página para remover o card
         window.location.reload();
   
       } catch (error) {
@@ -105,8 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
   
-  
-    // --- INICIALIZAÇÃO ---
     const init = async () => {
       const contaLogada = JSON.parse(localStorage.getItem('usuarioLogado'));
   
@@ -120,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
       
       renderizarInterface();
   
-      // Validação principal: o usuário precisa estar logado para ver favoritos
       if (!usuarioLogado) {
           tituloSecao.textContent = "ACESSO NEGADO";
           gridRestaurantes.innerHTML = `<p class="text-center fs-5">Você precisa fazer <a href="../../login.html">login</a> para ver seus restaurantes favoritos.</p>`;
@@ -130,16 +116,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const favoritosIds = usuarioLogado.restaurantesFavoritos || [];
   
       if (favoritosIds.length === 0) {
-          exibirCartoes([]); // Chama a função com um array vazio para mostrar a mensagem
+          exibirCartoes([]);
           return;
       }
   
       try {
-          // Busca os dados de cada restaurante favorito em paralelo
           const fetchPromises = favoritosIds.map(id => fetch(`${API_RESTAURANTES_URL}/${id}`));
           const responses = await Promise.all(fetchPromises);
           
-          // Converte as respostas para JSON
           const restaurantesFavoritos = await Promise.all(responses.map(res => res.json()));
   
           exibirCartoes(restaurantesFavoritos);
@@ -152,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     btnLogout.addEventListener('click', () => {
       localStorage.removeItem('usuarioLogado');
-      window.location.href = '../../home.html'; // Volta para a home ao deslogar
+      window.location.href = '../../home.html'; 
     });
   
     init();

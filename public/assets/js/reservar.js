@@ -1,6 +1,3 @@
-// =================================================================
-// INICIALIZAÇÃO E ESTADO GLOBAL
-// =================================================================
 let currentReservation = {
     tableNumber: null,
     tableCapacity: 0,
@@ -37,9 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
     addEventListeners();
 });
 
-// =================================================================
-// CARREGAMENTO DE DADOS E RENDERIZAÇÃO INICIAL
-// =================================================================
 async function fetchDataAndInitialize() {
     try {
         const [restaurantResponse, reservationsResponse] = await Promise.all([
@@ -90,9 +84,6 @@ function displayRestaurantInfo(info) {
     document.getElementById('info-capacidade').textContent = `Capacidade para ${info.capacidade} pessoas` || 'Não informada';
 }
 
-// =================================================================
-// LÓGICA DO MAPA DO RESTAURANTE
-// =================================================================
 function renderRestaurantLayout(mapaData) {
     const container = document.getElementById('restaurant-map-container');
     if (!container || !mapaData || !mapaData.elements) {
@@ -123,11 +114,6 @@ function renderRestaurantLayout(mapaData) {
     });
 }
 
-// =================================================================
-// LÓGICA DO CARDÁPIO
-// =================================================================
-
-// **NOVA FUNÇÃO PARA FORMATAR O PREÇO**
 function formatarPreco(valor) {
     if (typeof valor !== 'number') {
         const numero = parseFloat(valor);
@@ -202,9 +188,6 @@ function renderMenu(cardapioData) {
     menuContainer.appendChild(columnsContainer);
 }
 
-// =================================================================
-// LÓGICA DE RESERVA (O RESTO DO CÓDIGO PERMANECE O MESMO)
-// =================================================================
 function selectTable(tableNumber, capacity) {
     if (usuarioLogado && usuarioLogado.type === 'restaurante') {
         warningModal.show();

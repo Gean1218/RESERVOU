@@ -55,14 +55,12 @@
 .profile-image-container {
     position: relative;
     width: 120px;
-    /* REMOVIDO: height: 120px; */
 }
 
 .profile-image {
     width: 100%;
-    height: auto; /* ALTERADO: de 100% para auto para manter a proporção */
+    height: auto; 
     border-radius: 15px;
-    /* REMOVIDO: object-fit: cover; */
     border: 4px solid #dee2e6;
     background-color: #fff;
 }

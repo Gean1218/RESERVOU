@@ -1,4 +1,3 @@
-/* estilos.css */
 :root {
   --cor-vinho: #8B0000;
   --cor-creme: #FFFDD0;
@@ -19,11 +18,9 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* REGRA CORRIGIDA PARA FICAR IDÊNTICA À HOME.CSS */
 .navbar .navbar-brand {
-  color: #fff !important; /* Alterado para branco puro */
+  color: #fff !important; 
   font-weight: bold;
-  /* Removido o font-size para usar o padrão */
 }
 
 .navbar .btn-nav {

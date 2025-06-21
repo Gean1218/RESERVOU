@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // CAMINHO DA IMAGEM PADRÃO ATUALIZADO
         const imageUrl = fotoBase64 ? fotoBase64 : "assets/img/restaurantes/default.jpg";
 
         const infoCadastro = {
@@ -69,14 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
         
             const restauranteSalvo = await response.json();
         
-            // NOVO: Gerar token temporário para acesso ao editor
             const editorToken = btoa(JSON.stringify({
                 restauranteId: restauranteSalvo.id,
                 timestamp: Date.now(),
                 purpose: 'new_restaurant_setup'
             }));
             
-            // Armazenar o token temporariamente
             sessionStorage.setItem('editorToken', editorToken);
         
             alert('Restaurante cadastrado com sucesso! Você será redirecionado para o editor de mapa.');

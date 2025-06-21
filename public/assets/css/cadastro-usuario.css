@@ -29,7 +29,7 @@ body {
 h1.h2 {
   font-weight: bold;
   color: var(--neutral-text);
-  margin-bottom: 0.5rem; /* Ajuste na margem */
+  margin-bottom: 0.5rem; 
 }
 
 p {
@@ -70,7 +70,6 @@ label.form-label {
   color: var(--neutral-text);
 }
 
-/* ESTILO ADICIONADO AQUI */
 .link-restaurante {
   font-size: 0.9rem;
   color: #6c757d;
@@ -86,8 +85,6 @@ label.form-label {
   text-decoration: underline;
 }
 
-
-/* Ícones */
 .icone-topo {
   position: absolute;
   top: 2rem;
@@ -107,14 +104,12 @@ label.form-label {
   opacity: 0.9;
 }
 
-/* Media query para telas menores */
 @media (max-width: 767.98px) {
   .imagem-container {
       display: none;
   }
 }
 
-/* Estilos para mensagens de erro/sucesso */
 .message { margin-top: 15px; padding: 10px; border-radius: 5px; display: none; font-size: 0.9rem; margin-bottom: 30px;}
 .success { background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc; }
 .error { background-color: #f8d7da; color: #842029; border: 1px solid #f5c2c7; }
