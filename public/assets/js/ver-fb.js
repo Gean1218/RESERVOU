@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="btn-excluir" data-id="${feedback.id}" title="Excluir">
                         <i class="bi bi-x-lg"></i>
                     </button>
-                    <h5 class="card-title">${feedback.nomeUsuario}</h5>
+                    <h5 class="card-title">${feedback.target}</h5>
                     <p class="card-text">"${feedback.mensagem}"</p>
                     <small class="text-muted d-block text-end mt-2">${new Date(feedback.data).toLocaleDateString()}</small>
                 </div>

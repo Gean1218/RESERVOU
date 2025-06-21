@@ -98,12 +98,13 @@ body {
     right: 0;
     padding: 2rem 1rem 1rem 1rem;
 }
-#carrosselTopo .carousel-indicators button { 
-    width: 10px; 
-    height: 10px; 
-    border-radius: 50%;
-    background-color: var(--dourado);
-    border: none; 
+
+#carrosselTopo .carousel-indicators button {
+    transition: all 0.3s ease;
+}
+
+#carrosselTopo .carousel-indicators button.active { 
+    width: 60px;
 }
 
 /* --- ESTILOS DO CARTÃO DE RESTAURANTE --- */

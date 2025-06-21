@@ -144,6 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('editId').value = reserva.id;
             document.getElementById('editStatus').value = reserva.status || 'Pendente';
             document.getElementById('editNumeroMesa').value = reserva.numeroMesa;
+            document.getElementById('editQtdPessoas').value = reserva.qtdPessoas;
             document.getElementById('editData').value = reserva.data;
             document.getElementById('editHorario').value = reserva.horario;
             document.getElementById('editEstacionamento').value = reserva.estacionamento || 'Não';
@@ -158,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const dadosAtualizados = {
             status: document.getElementById('editStatus').value,
             numeroMesa: parseInt(document.getElementById('editNumeroMesa').value, 10),
+            qtdPessoas: parseInt(document.getElementById('editQtdPessoas').value, 10),
             data: document.getElementById('editData').value,
             horario: document.getElementById('editHorario').value,
             estacionamento: document.getElementById('editEstacionamento').value,

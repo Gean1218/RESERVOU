@@ -74,9 +74,17 @@
   </div>
 
   <main class="container-fluid flex-grow-1">
-    <div style="margin-top: 10px;" id="carrosselTopo" class="carousel slide mx-auto mb-5 rounded-4 overflow-hidden" data-bs-ride="carousel">
+    <div style="margin-top: 10px;" id="carrosselTopo" class="carousel slide mx-auto mb-5 rounded-4 overflow-hidden " data-bs-interval="3000" data-bs-ride="carousel">
       <div class="carousel-inner" id="conteudoCarrossel"></div>
       <div class="carousel-indicators" id="indicadoresCarrossel"></div>
+      <a class="carousel-control-prev" href="#carrosselTopo" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden"></span>
+      </a>
+      <a class="carousel-control-next" href="#carrosselTopo" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden"></span>
+      </a>
     </div>
     <h3 class="titulo-secao" id="titulo-secao">RESTAURANTES</h3>
     <div id="gridRestaurantes" class="row justify-content-center px-md-4"></div>

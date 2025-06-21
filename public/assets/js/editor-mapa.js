@@ -1,8 +1,10 @@
+// No arquivo editor-mapa.js, substitua a seção de VERIFICAÇÃO DE SEGURANÇA PRIMÁRIA por:
+
 document.addEventListener('DOMContentLoaded', () => {
     // --- VERIFICAÇÃO DE SEGURANÇA PRIMÁRIA ---
-    const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
     const params = new URLSearchParams(window.location.search);
     const restauranteIdDaUrl = params.get('id');
+    const editorToken = sessionStorage.getItem('editorToken');
 
     function bloquearAcesso(message, redirect = true) {
         document.body.innerHTML = `
@@ -14,14 +16,50 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
     }
 
+    // Verificar se o ID do restaurante foi fornecido
     if (!restauranteIdDaUrl) {
         bloquearAcesso('ID do restaurante não fornecido na URL.');
         return;
     }
-    if (!usuarioLogado || usuarioLogado.type !== 'restaurante' || usuarioLogado.id !== restauranteIdDaUrl) {
-        bloquearAcesso('Você não tem permissão para acessar esta página.');
+
+    // Verificar se existe token de editor
+    if (!editorToken) {
+        bloquearAcesso('Acesso negado. Esta página só pode ser acessada durante o processo de cadastro de um novo restaurante.');
         return;
     }
+
+    // Validar o token
+    try {
+        const tokenData = JSON.parse(atob(editorToken));
+        const agora = Date.now();
+        const tokenAge = agora - tokenData.timestamp;
+        const FIVE_MINUTES = 5 * 60 * 1000; // 5 minutos em milissegundos
+
+        // Verificar se o token é para este restaurante
+        if (tokenData.restauranteId !== restauranteIdDaUrl) {
+            throw new Error('Token inválido para este restaurante.');
+        }
+
+        // Verificar se o token não expirou (5 minutos)
+        if (tokenAge > FIVE_MINUTES) {
+            throw new Error('Sessão expirada. O acesso ao editor é válido apenas por 5 minutos após o cadastro.');
+        }
+
+        // Verificar se é um token de configuração inicial
+        if (tokenData.purpose !== 'new_restaurant_setup') {
+            throw new Error('Token com propósito inválido.');
+        }
+
+    } catch (error) {
+        // Limpar token inválido
+        sessionStorage.removeItem('editorToken');
+        bloquearAcesso(`Acesso negado: ${error.message}`);
+        return;
+    }
+
+    // Se chegou até aqui, o acesso é válido
+    // Limpar o token após o uso (só pode ser usado uma vez)
+    sessionStorage.removeItem('editorToken');
 
     // --- Elementos do DOM e Variáveis Globais ---
     const nomeRestauranteSpan = document.getElementById('nomeRestaurante');
@@ -47,19 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDragging = false;
     let startCoords = null;
 
-    // --- FUNÇÃO PRINCIPAL DE INICIALIZAÇÃO (COM A NOVA VERIFICAÇÃO) ---
+    // --- FUNÇÃO DE INICIALIZAÇÃO ---
     async function inicializarEditor() {
         try {
             const response = await fetch(`/restaurantes/${restauranteIdDaUrl}`);
             if (!response.ok) throw new Error('Restaurante não encontrado.');
             
             restauranteData = await response.json();
-            
-            // **NOVA VERIFICAÇÃO PARA BLOQUEAR EDIÇÃO**
-            if (restauranteData.mapaRestaurante && restauranteData.mapaRestaurante.elements && restauranteData.mapaRestaurante.elements.length > 0) {
-                bloquearAcesso('Não é possível alterar o mapa de um restaurante que já foi configurado.');
-                return; // Para a execução aqui
-            }
 
             if (restauranteData?.infoCadastro && restauranteData?.mapaRestaurante?.grid) {
                 nomeRestauranteSpan.textContent = restauranteData.infoCadastro.nome;
@@ -117,8 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gridContainer.appendChild(elDiv);
     }
 
-    // O restante do seu código (handlers de eventos, etc.) permanece o mesmo.
-    // ...
+    // [RESTO DAS FUNÇÕES DO SEU CÓDIGO ORIGINAL]
     async function handleGridResize() {
         const newRows = parseInt(gridRowsInput.value, 10);
         const newCols = parseInt(gridColsInput.value, 10);
@@ -299,20 +330,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Adicionar Event Listeners ---
-    toolButtons.forEach(btn => btn.addEventListener('click', () => ativarFerramenta(btn)));
-    gridContainer.addEventListener('click', handleGridClick);
-    gridContainer.addEventListener('mousedown', handleMouseDown);
-    gridContainer.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseup', handleMouseUp);
-    elementForm.addEventListener('submit', adicionarElemento);
-    saveButton.addEventListener('click', salvarMapaNoServidor);
-    gridRowsInput.addEventListener('input', handleGridResize);
-    gridColsInput.addEventListener('input', handleGridResize);
-
-    // Inicia todo o processo
-    inicializarEditor();
-
     function showCustomAlert(message) {
         alertModalBody.textContent = message;
         alertModal.show();
@@ -342,4 +359,18 @@ document.addEventListener('DOMContentLoaded', () => {
             modalEl.addEventListener('hidden.bs.modal', onHidden, { once: true });
         });
     }
+
+    // --- Adicionar Event Listeners ---
+    toolButtons.forEach(btn => btn.addEventListener('click', () => ativarFerramenta(btn)));
+    gridContainer.addEventListener('click', handleGridClick);
+    gridContainer.addEventListener('mousedown', handleMouseDown);
+    gridContainer.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+    elementForm.addEventListener('submit', adicionarElemento);
+    saveButton.addEventListener('click', salvarMapaNoServidor);
+    gridRowsInput.addEventListener('input', handleGridResize);
+    gridColsInput.addEventListener('input', handleGridResize);
+
+    // Inicia todo o processo
+    inicializarEditor();
 });

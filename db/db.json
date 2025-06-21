@@ -7,39 +7,9 @@
       "email": "admin@adm.com",
       "password": "admin",
       "restaurantesFavoritos": []
-    },
-    {
-      "id": "5c6b",
-      "nome": "Arthur Augusto Buitrago Frainz",
-      "email": "arthur@mail.com",
-      "password": "1234",
-      "restaurantesFavoritos": []
     }
   ],
-  "reservas": [
-    {
-      "id": "e37b",
-      "idUsuario": "5c6b",
-      "idRestaurante": 1,
-      "numeroMesa": 12,
-      "data": "2025-06-21",
-      "horario": "22:00",
-      "qtdPessoas": 1,
-      "estacionamento": "Não",
-      "status": "Confirmada"
-    },
-    {
-      "id": "5218",
-      "idUsuario": "5c6b",
-      "idRestaurante": 1,
-      "numeroMesa": 12,
-      "data": "2025-06-21",
-      "horario": "21:00",
-      "qtdPessoas": 1,
-      "estacionamento": "Não",
-      "status": "Confirmada"
-    }
-  ],
+  "reservas": [],
   "restaurantes": [
     {
       "id": "1",
@@ -1201,83 +1171,7 @@
           }
         ]
       }
-    },
-    {
-      "id": "f079",
-      "infoCadastro": {
-        "nome": "Nome",
-        "categoria": "Categoria",
-        "endereco": "Rua A, 100",
-        "capacidade": 30,
-        "imagemUrl": "assets/img/restaurantes/default.jpg",
-        "telefone": "123456789",
-        "email": "mail@mail.com",
-        "password": "1234"
-      },
-      "mapaRestaurante": {
-        "grid": {
-          "columns": 3,
-          "rows": 3
-        },
-        "elements": []
-      },
-      "cardapio": {}
     }
   ],
-  "feedbacks": [
-    {
-      "id": "fe86",
-      "target": "restaurante",
-      "idRestaurante": "3",
-      "idUsuario": "1",
-      "nomeUsuario": "Usuário Admin",
-      "mensagem": "teste ",
-      "data": "2025-06-20T22:07:46.349Z"
-    },
-    {
-      "id": "a521",
-      "target": "restaurante",
-      "idRestaurante": "1",
-      "idUsuario": "1",
-      "nomeUsuario": "Pizzaria Bella",
-      "mensagem": "teste logado em restaurante",
-      "data": "2025-06-20T22:17:35.778Z"
-    },
-    {
-      "id": "468f",
-      "target": "restaurante",
-      "idRestaurante": "3",
-      "idUsuario": "1",
-      "nomeUsuario": "Pizzaria Bella",
-      "mensagem": "teste logado como restaurante 2",
-      "data": "2025-06-20T22:19:55.057Z"
-    },
-    {
-      "id": "73ee",
-      "target": "restaurante",
-      "idRestaurante": "1",
-      "idUsuario": "1",
-      "nomeUsuario": "Pizzaria Bella",
-      "mensagem": "A",
-      "data": "2025-06-20T22:20:45.267Z"
-    },
-    {
-      "id": "d297",
-      "target": "restaurante",
-      "idRestaurante": "3",
-      "idUsuario": "1",
-      "nomeUsuario": "Usuário Admin",
-      "mensagem": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-      "data": "2025-06-20T22:22:58.808Z"
-    },
-    {
-      "id": "1bb4",
-      "target": "restaurante",
-      "idRestaurante": "2",
-      "idUsuario": "Anônimo",
-      "nomeUsuario": "Anônimo",
-      "mensagem": "teste",
-      "data": "2025-06-21T00:13:06.385Z"
-    }
-  ]
+  "feedbacks": []
 }

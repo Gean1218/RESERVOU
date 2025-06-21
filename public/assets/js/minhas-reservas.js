@@ -15,13 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
      * Função principal que orquestra o carregamento e exibição das reservas.
      */
     async function init() {
-        console.log('🚀 Iniciando carregamento das reservas...');
     
     const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
-    console.log('👤 Usuario logado COMPLETO:', usuarioLogado);
-    console.log('🔑 Chaves disponíveis:', Object.keys(usuarioLogado || {}));
-    console.log('🆔 idUsuario atual:', usuarioLogado?.idUsuario);
-    console.log('🆔 id alternativo:', usuarioLogado?.id);
   
         if (!usuarioLogado || usuarioLogado.type !== 'usuario') {
             mostrarMensagemDeErro("Você precisa estar logado como usuário para ver suas reservas.");
@@ -35,25 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
      * Carrega os dados do servidor e popula a tabela de reservas.
      * @param {number} idUsuario - O ID do usuário logado.
      */
-    async function carregarEExibirReservas(idUsuario) {console.log(`📡 Carregando reservas para o usuário ID: ${idUsuario}`);
+    async function carregarEExibirReservas(idUsuario) {
         tabelaReservasBody.innerHTML = `<tr><td colspan="8" class="text-center">Carregando...</td></tr>`;
     
         try {
-            console.log(`🔗 Fazendo requisições para:
-                - Restaurantes: ${API_RESTAURANTES_URL}
-                - Reservas: ${API_RESERVAS_URL} (todas, filtraremos por usuário)`);
-            
             // 1. Busca todas as informações de restaurantes e reservas
             const [restaurantesResponse, reservasResponse] = await Promise.all([
                 fetch(API_RESTAURANTES_URL),
                 fetch(API_RESERVAS_URL) // MUDANÇA: Busca todas as reservas
             ]);
-    
-            console.log('📊 Status das respostas:', {
-                restaurantes: restaurantesResponse.status,
-                reservas: reservasResponse.status
-            });
-    
+
             if (!restaurantesResponse.ok || !reservasResponse.ok) {
                 throw new Error('Falha ao carregar os dados do servidor.');
             }
@@ -61,21 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const restaurantes = await restaurantesResponse.json();
             const todasReservas = await reservasResponse.json();
             
-            console.log('🏪 Restaurantes recebidos:', restaurantes.length);
-            console.log('📅 Todas as reservas recebidas:', todasReservas.length);
-            
             // NOVO: Filtra reservas do usuário específico
             const reservasDoUsuario = todasReservas.filter(reserva => {
                 // Converte ambos para string para comparação segura
                 const reservaUserId = String(reserva.idUsuario);
                 const usuarioId = String(idUsuario);
                 const pertenceAoUsuario = reservaUserId === usuarioId;
-                
-                console.log(`🔍 Reserva ID ${reserva.id}: idUsuario "${reservaUserId}" === "${usuarioId}" ? ${pertenceAoUsuario}`);
                 return pertenceAoUsuario;
             });
-            
-            console.log('👤 Reservas do usuário:', reservasDoUsuario.length);
     
             // 2. Mapeia os restaurantes por ID para acesso rápido ao nome
             const mapaRestaurantes = restaurantes.reduce((map, restaurante) => {
@@ -87,9 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const reservasAtivas = reservasDoUsuario.filter(reserva => 
                 !reserva.status || reserva.status.toLowerCase() !== 'cancelada'
             );
-            
-            console.log('✅ Reservas ativas:', reservasAtivas.length);
-    
+
             renderizarTabela(reservasAtivas, mapaRestaurantes);
     
         } catch (error) {

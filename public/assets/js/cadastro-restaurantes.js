@@ -62,17 +62,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(novoRestaurante),
             });
-
+        
             if (!response.ok) {
                 throw new Error(`Erro na rede: ${response.statusText}`);
             }
-
+        
             const restauranteSalvo = await response.json();
-
+        
+            // NOVO: Gerar token temporário para acesso ao editor
+            const editorToken = btoa(JSON.stringify({
+                restauranteId: restauranteSalvo.id,
+                timestamp: Date.now(),
+                purpose: 'new_restaurant_setup'
+            }));
+            
+            // Armazenar o token temporariamente
+            sessionStorage.setItem('editorToken', editorToken);
+        
             alert('Restaurante cadastrado com sucesso! Você será redirecionado para o editor de mapa.');
             
             window.location.href = `editor-mapa.html?id=${restauranteSalvo.id}`;
-
+        
         } catch (error) {
             console.error('Falha ao cadastrar restaurante:', error);
             alert('Ocorreu um erro ao cadastrar o restaurante. Por favor, tente novamente.');
