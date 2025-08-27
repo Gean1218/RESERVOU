@@ -2,9 +2,9 @@
 
 ---
 
-# **Reservou – Plataforma de Reservas para Restaurantes**
+# **RESERVOU – Plataforma de Reservas para Restaurantes**
 
-🚀 **Reservou** é uma aplicação web desenvolvida durante o **1º semestre de Sistemas de Informação na PUC Minas**, como parte do **Trabalho Interdisciplinar de Aplicações Web (TIAW)**.
+🚀 **RESERVOU** é uma aplicação web desenvolvida durante o **1º semestre de Sistemas de Informação na PUC Minas**, como parte do **Trabalho Interdisciplinar de Aplicações Web (TIAW)**.
 O objetivo do projeto é **facilitar a experiência de reservar mesas** em restaurantes, conectando clientes e estabelecimentos de forma rápida, intuitiva e eficiente.
 
 ---
