@@ -123,9 +123,9 @@ Durante o desenvolvimento, aprendemos que **desenvolver não é só escrever có
 * **Gean Marques**
 * **Arthur Buitrago**
 * **Paulo Henrique** 
-* ** **
-* ** ** 
-* ** ** 
+* **Juan Carlos**
+* **Caio Antonio** 
+* **Sofia Sousa** 
 
 ---
 
