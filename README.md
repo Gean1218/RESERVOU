@@ -36,9 +36,13 @@ O Reservou foi criado para resolver esses desafios de forma simples e acessível
 ## **Funcionalidades**
 
 ✔️ Login diferenciado para clientes e restaurantes
+
 ✔️ Pesquisa de restaurantes por nome ou tipo de culinária
+
 ✔️ Reserva de mesas de forma rápida e intuitiva
+
 ✔️ Favoritar restaurantes para acesso fácil
+
 ✔️ Painel administrativo para restaurantes com:
 
 * Gerenciamento de reservas
@@ -99,7 +103,7 @@ Abra o arquivo `index.html` no navegador ou utilize uma extensão como **Live Se
 ## **Deploy**
 
 Acesse a aplicação publicada:
-🔗 [Reservou – Deploy](https://lnkd.in/gcDhAH_G)
+🔗 [Reservou – Deploy](https://reservoufront.vercel.app/)
 
 ---
 
